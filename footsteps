@@ -1,0 +1,27 @@
+public class footsteps : MonoBehaviour
+{
+    public CharacterController charController;
+    public bool isgrounded;
+    public AudioSource footstep;
+
+    
+    private void Start()
+    {
+        charController = GetComponent<CharacterController>();
+        
+    }
+       void Update()
+        {
+        footstep = GetComponent<AudioSource>();
+        if (charController.isGrounded == true && charController.velocity.magnitude > .001f && footstep.isPlaying == false)
+        {
+            footstep.volume = Random.Range(0.8f, 1f);
+            footstep.pitch = Random.Range(1.0f, 2f);
+            footstep.Play();
+        }
+        if(charController.isGrounded == true)
+        {
+            isgrounded = true;
+        }
+    }
+}
